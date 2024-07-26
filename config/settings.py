@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     #third party apps
     "rest_framework",
     #local apps
-    "image"
+    "image",
+    "drf_spectacular",
 ]
 
 MIDDLEWARE = [
@@ -137,3 +138,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #gemini api key
 API_KEY =config("API_KEY")
 
+
+REST_FRAMEWORK = {
+    # YOUR SETTINGS
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Gemini API',
+    'DESCRIPTION': 'Estimate body fat percentage',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    # OTHER SETTINGS
+}
