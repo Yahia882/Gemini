@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from pathlib import Path
 import os
 from decouple import Csv, config
-
+from datetime import timedelta
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -30,7 +30,7 @@ SECRET_KEY = config("SECRET_KEY")
 DEBUG = True
 
 ALLOWED_HOSTS = config("ALLOWED_HOSTS", cast=Csv())
-CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_ALLOW_ALL = [locals]
 
 # Application definition
 
@@ -41,14 +41,21 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #third party apps
+    # third party apps
     "rest_framework",
-    #local apps
+    "rest_framework_simplejwt",
+    'rest_framework_simplejwt.token_blacklist',
+    # local apps
+    "Users",
     "image",
+    "vision",
     "drf_spectacular",
+    "drf_spectacular_sidecar",
+
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -135,19 +142,35 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-#gemini api key
-API_KEY =config("API_KEY")
+# gemini api key
+API_KEY = config("API_KEY")
 
 
-REST_FRAMEWORK = {
-    # YOUR SETTINGS
+REST_FRAMEWORK = {'DEFAULT_AUTHENTICATION_CLASSES': (
+    'rest_framework_simplejwt.authentication.JWTAuthentication',
+),
+
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
 SPECTACULAR_SETTINGS = {
     'TITLE': 'Gemini API',
-    'DESCRIPTION': 'Estimate body fat percentage',
+    'DESCRIPTION': 'Vision App',
     'VERSION': '1.0.0',
     'SERVE_INCLUDE_SCHEMA': False,
     # OTHER SETTINGS
 }
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(days=1),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
+}
+
+AUTH_USER_MODEL = "Users.CustomUser"
+
+
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost:8111',
+    'http://127.0.0.1:8111',
+    # Add other trusted origins here
+]

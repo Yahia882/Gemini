@@ -19,9 +19,14 @@ from django.urls import path , include
 from django.conf.urls.static import static
 from django.conf import settings
 from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
+from image.views import Code1 ,Code2
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('image/',include("image.urls"))
+    # path('image/',include("image.urls")),
+    path("auth/", include("Users.urls")),
+    path("vision/", include("vision.urls")),
+    path("code/",Code1),
+    path("code2/",Code2)
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
@@ -30,6 +35,6 @@ urlpatterns +=[
     # YOUR PATTERNS
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
     # Optional UI:
-    path('api/schema/swagger-ui/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+    path('', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
     path('api/schema/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
 ]
