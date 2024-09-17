@@ -11,7 +11,7 @@ This project leverages the **Gemini model** to automate the generation of fronte
 
 2. **VS Code Extension Integration**:
 
-   - A **Sync Code** command allows users to synchronize the generated code from the VS Code environment with the generated code. Any updates or changes to the prompt result in updates to the codebase.
+   - A **Sync Code** command allows users to synchronize the generated code for the app with VS Code environment. Any updates or changes to the prompt result in updates to the codebase.
 
 3. **Customizable Code Generation**:
 
