@@ -1,6 +1,6 @@
 ### Project Description: AI-Powered Frontend Code Generator
 
-This project leverages the **Gemini model** to automate the generation of frontend code (HTML, CSS, and JavaScript) based on design inputs, including images of UI mockups such as those from **Figma**. The system transforms these designs into responsive and functional web pages, offering developers the ability to further refine and synchronize code directly from a **VS Code extension**.
+This project leverages the **Gemini model** to automate the generation of frontend code (HTML, CSS, and JavaScript) based on design inputs, including images of UI mockups such as those from **Figma[...]
 
 #### Key Features:
 
@@ -12,6 +12,7 @@ This project leverages the **Gemini model** to automate the generation of fronte
 2. **VS Code Extension Integration**:
 
    - A **Sync Code** command allows users to synchronize the generated code for the app with VS Code environment. Any updates or changes to the prompt result in updates to the codebase.
+   - VS Code Extension Repository: [vision-extension](https://github.com/Yahia882/vision-extension)
 
 3. **Customizable Code Generation**:
 
@@ -28,4 +29,4 @@ This project leverages the **Gemini model** to automate the generation of fronte
 
 ---
 
-The **core functionality** of this project is to take a **design image** as input, transform it into code, and provide seamless **synchronization** and updates through VS Code, allowing for a flexible and efficient development workflow
+The **core functionality** of this project is to take a **design image** as input, transform it into code, and provide seamless **synchronization** and updates through VS Code, allowing for a flex[...]
